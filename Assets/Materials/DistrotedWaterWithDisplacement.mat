@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DistrotedWaterWithDisplacement
-  m_Shader: {fileID: -6465566751694194690, guid: a93bef74cfcc0ef478cf4208a6840e16,
+  m_Shader: {fileID: -6465566751694194690, guid: b451ab1c03496a84a8e7e7af83767514,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -76,9 +76,12 @@ Material:
     m_Floats:
     - Vector1_160B7253: 0.1
     - Vector1_2FF0FA37: 35
+    - Vector1_4B20DBEB: 0.1
+    - Vector1_A1953DE0: 1
+    - Vector1_C98F2056: 25
     - Vector1_DC4789E6: 18.23
     - Vector1_EB21BDB: 0.1
-    - Vector1_EEB9CE51: 0.26
+    - Vector1_EEB9CE51: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
