@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2bf8255c134fa740b456730c20be8f7, type: 3}
-  m_Name: Roll
+  m_Name: Slide
   m_EditorClassIdentifier: 
-  animation: {fileID: 9100000, guid: f1c2a3ba2257b7d40a532a7ce10adc46, type: 2}
-  material: {fileID: 2100000, guid: f7e66d63721fca145bbb8ae14f726c01, type: 2}
+  animation: {fileID: 9100000, guid: 14465dd92d2d3644aac78d2538af8f9e, type: 2}
+  material: {fileID: 2100000, guid: feae04f80cccbdc4297e7d8ce5850add, type: 2}

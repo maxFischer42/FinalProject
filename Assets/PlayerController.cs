@@ -5,15 +5,43 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerAnimationController))]
 public class PlayerController : MonoBehaviour
 {
-    public float speedMultiplier;
-    public float xMaxDistanceDelta = 0.1f;
+    private bool isCooldown = false;
 
+    private Vector2 uptiltcolloffset;
+    private Vector2 uptiltthrustcolloffset;
+
+    private GameObject currentHitbox;
+
+    public enum State {Idle, Walk, Run, Roll, Slide, Attack1};
+    public State currentState = State.Idle;
+
+    [Header("Components")]
     private SpriteRenderer rend;
     private Animator anim;
-
     private PlayerAnimationController animator;
-    //note: 0 = Idle, 1 = Walk, 2 = Roll, 3 = Dash, 4 = Attack1
+    //note: 0 = Idle, 1 = Run, 2 = Roll, 3 = Dash, 4 = Attack1, 5 = Walk, 6 = Slide
+    public Rigidbody2D rigidBody;
 
+
+
+    [Header("Colliders")]
+    public CapsuleCollider2D mainCollider;
+    public CircleCollider2D rollCollider;
+    public BoxCollider2D slideCollider;
+
+    [Header("AttackDetails")]
+    public GameObject upwardTilt;
+    public Vector2 flip1Offset = Vector2.zero;
+    public GameObject upwardTiltThrust;
+    public Vector2 flip1Offset2 = Vector2.zero;
+
+
+    [Header("Multiplier Variables")]
+    public float speedMultiplier;
+    public float xMaxDistanceDelta = 0.1f;
+    public float runMultiplier = 1.5f;
+    public float rollMultiplier = 1.8f;
+    public float slideMultiplier = 2.3f;
 
     private void Start()
     {
@@ -22,36 +50,49 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<PlayerAnimationController>();
     }
 
-
-
     void Update()
     {
         GetInputs inputs = new GetInputs();
+        if (isCooldown)
+            return;
+        if (inputs.aInput > 0)
+        {
+            Debug.Log("foo");
+            currentState = State.Attack1;
+
+            animator.ChangeAnimation(4);
+            return;
+        }
         if (inputs.hInput != 0)
         {
-            //check if rolling
-            if(inputs.yInput < 0)
+            //check if rolling or sliding
+            if(inputs.yInput != 0)
             {
-
+                if (inputs.yInput < 0)
+                {
+                    Slide(inputs.hInput);
+                }
+                else if(inputs.yInput > 0)
+                {
+                    Roll(inputs.hInput);
+                }
             }
             else
             {
-                xMove(inputs.hInput);
-                animator.ChangeAnimation(1);
+                xMove(inputs.hInput,inputs.cInput);
             }
         }
         else if(inputs.hInput == 0)
         {
+            
+            currentState = State.Idle;
             animator.ChangeAnimation(0);
         }
-
     }
 
-
-
-
-    public void xMove(float x)
+    public void xMove(float x, float c)
     {
+        float d = xMaxDistanceDelta;
         if(x > 0)
         {
             rend.flipX = false;
@@ -61,10 +102,113 @@ public class PlayerController : MonoBehaviour
             rend.flipX = true;
         }
         Vector3 velocity = new Vector2(x * speedMultiplier,0);
-        transform.position = Vector3.MoveTowards(transform.position, transform.position + velocity, xMaxDistanceDelta);
+        if(c > 0)
+        {
+            animator.ChangeAnimation(5);
+            d *= runMultiplier;
+            currentState = State.Run;
+        }
+        else
+        {
+            animator.ChangeAnimation(1);
+            currentState = State.Walk;
+        }
+        transform.position = Vector3.MoveTowards(transform.position, transform.position + velocity, d);
     }
 
+    public void Roll(float x)
+    {
+        Vector2 velocity = new Vector2(x  * rollMultiplier,0f);
+        animator.ChangeAnimation(2);
+        rigidBody.velocity = velocity;
+    }
 
+    public void Slide(float x)
+    {
+        Vector2 velocity = new Vector2(x * slideMultiplier, 0f);
+        animator.ChangeAnimation(6);
+        rigidBody.velocity = velocity;
+    }
+
+    public void SlideEvent(int x)
+    {
+        switch (x)
+        {
+            case 0:
+                slideCollider.enabled = true;
+                mainCollider.enabled = false;
+                isCooldown = true;
+                currentState = State.Slide;
+                break;
+            case 1:
+                mainCollider.enabled = true;
+                slideCollider.enabled = false;
+                currentState = State.Idle;
+                isCooldown = false;
+                animator.ChangeAnimation(0);
+                rigidBody.velocity = rigidBody.velocity / slideMultiplier * 2;
+                break;
+        }
+    }
+
+    public void RollEvent(int x)
+    {
+        switch(x)
+        {
+            case 0:
+                rollCollider.enabled = true;
+                mainCollider.enabled = false;
+                isCooldown = true;
+                currentState = State.Roll;
+                break;
+            case 1:
+                mainCollider.enabled = true;
+                rollCollider.enabled = false;
+                currentState = State.Idle;
+                isCooldown = false;
+                animator.ChangeAnimation(0);
+                rigidBody.velocity = rigidBody.velocity / rollMultiplier * 2;
+                break;
+        }
+    }
+
+    public void UpwardTiltEvent(int x)
+    {
+        switch(x)
+        {
+            case 0:
+                isCooldown = true;
+                currentHitbox = (GameObject)Instantiate(upwardTilt,transform);
+                if (rend.flipX)
+                {
+                    currentHitbox.GetComponent<BoxCollider2D>().offset = flip1Offset;
+                }
+                break;
+            case 1:
+                Destroy(currentHitbox.gameObject);
+                GetInputs inputs = new GetInputs();
+                if (inputs.aInput == 0)
+                {
+                    isCooldown = false;
+                    currentState = State.Idle;
+                    animator.ChangeAnimation(0);
+                }
+                break;
+            case 2:
+                currentHitbox = (GameObject)Instantiate(upwardTiltThrust, transform);
+                if (rend.flipX)
+                {
+                    currentHitbox.GetComponent<BoxCollider2D>().offset = flip1Offset2;
+                }
+                break;
+            case 3:
+                Destroy(currentHitbox.gameObject);
+                isCooldown = false;
+                currentState = State.Idle;
+                animator.ChangeAnimation(0);
+                break;
+        }
+    }
 
 }
 

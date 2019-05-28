@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2bf8255c134fa740b456730c20be8f7, type: 3}
-  m_Name: Roll
+  m_Script: {fileID: 11500000, guid: 9d79546d28b20dc4c93d0fd7610d98f3, type: 3}
+  m_Name: UpwardTiltThrust
   m_EditorClassIdentifier: 
-  animation: {fileID: 9100000, guid: f1c2a3ba2257b7d40a532a7ce10adc46, type: 2}
-  material: {fileID: 2100000, guid: f7e66d63721fca145bbb8ae14f726c01, type: 2}
+  damageRange: {x: 4, y: 8}
+  knockbackScalar: 6

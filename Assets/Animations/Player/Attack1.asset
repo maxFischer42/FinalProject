@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2bf8255c134fa740b456730c20be8f7, type: 3}
-  m_Name: Roll
+  m_Name: Attack1
   m_EditorClassIdentifier: 
-  animation: {fileID: 9100000, guid: f1c2a3ba2257b7d40a532a7ce10adc46, type: 2}
-  material: {fileID: 2100000, guid: f7e66d63721fca145bbb8ae14f726c01, type: 2}
+  animation: {fileID: 9100000, guid: d28e930af98ef224180956104893681c, type: 2}
+  material: {fileID: 2100000, guid: 522ef66ae831b264394cd2d0d095f207, type: 2}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
-    [Tooltip("0 = Idle, 1 = Walk, 2 = Roll, 3 = Dash, 4 = Attack1")]
+    [Tooltip("0 = Idle, 1 = Sprint, 2 = Roll, 3 = Dash, 4 = Attack1, 5 = Walk, 6 = Slide")]
     public AnimationObject[] animations = new AnimationObject[5];
     private Animator animator;
     private SpriteRenderer renderer;
