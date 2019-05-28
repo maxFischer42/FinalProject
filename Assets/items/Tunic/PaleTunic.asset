@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac600fa142fa974da601a5cd7b1169f, type: 3}
   m_Name: PaleTunic
   m_EditorClassIdentifier: 
-  m_name: 
+  m_name: Pale Tunic
   icon: {fileID: 0}
-  flair: 
+  flair: A tunic with a blue/gray coloring.
+  itemType: 0
+  indexID: 0

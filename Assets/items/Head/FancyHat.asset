@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89a2790df6d527b4e84282bdfa7189cb, type: 3}
-  m_Name: TatteredCloak
+  m_Script: {fileID: 11500000, guid: d515dfa73e03c7f4abe75b2497f962d9, type: 3}
+  m_Name: FancyHat
   m_EditorClassIdentifier: 
-  m_name: Tattered Cloak
-  icon: {fileID: 0}
-  flair: An old cloak, tearing at the edges.
+  m_name: FancyHat
+  icon: {fileID: -5926832121448541893, guid: 8ded76426011ee34ea308598eda2871e, type: 3}
+  flair: 
   itemType: 0
-  indexID: 0
+  indexID: 5
