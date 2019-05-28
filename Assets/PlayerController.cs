@@ -187,7 +187,7 @@ public class PlayerController : MonoBehaviour
             case 1:
                 Destroy(currentHitbox.gameObject);
                 GetInputs inputs = new GetInputs();
-                if (inputs.aInput == 0)
+                if (inputs.aInput > 0)
                 {
                     isCooldown = false;
                     currentState = State.Idle;
@@ -228,4 +228,5 @@ public class GetInputs
         bInput = Input.GetAxisRaw("Action2");
         cInput = Input.GetAxisRaw("Action3");
     }
+
 }

@@ -47,7 +47,7 @@ AnimationClip:
       value: {fileID: -8109102201601558926, guid: 7f2d16ae10bd7364097540f01c2c811e,
         type: 3}
     - time: 0.75
-      value: {fileID: 6049323530440501980, guid: 7f2d16ae10bd7364097540f01c2c811e,
+      value: {fileID: -8109102201601558926, guid: 7f2d16ae10bd7364097540f01c2c811e,
         type: 3}
     - time: 0.8333333
       value: {fileID: 8412529732035705440, guid: 7f2d16ae10bd7364097540f01c2c811e,
@@ -101,7 +101,7 @@ AnimationClip:
     - {fileID: -2515193864896013809, guid: 7f2d16ae10bd7364097540f01c2c811e, type: 3}
     - {fileID: -9060990441867598610, guid: 7f2d16ae10bd7364097540f01c2c811e, type: 3}
     - {fileID: -8109102201601558926, guid: 7f2d16ae10bd7364097540f01c2c811e, type: 3}
-    - {fileID: 6049323530440501980, guid: 7f2d16ae10bd7364097540f01c2c811e, type: 3}
+    - {fileID: -8109102201601558926, guid: 7f2d16ae10bd7364097540f01c2c811e, type: 3}
     - {fileID: 8412529732035705440, guid: 7f2d16ae10bd7364097540f01c2c811e, type: 3}
     - {fileID: 1314285199730569517, guid: 7f2d16ae10bd7364097540f01c2c811e, type: 3}
     - {fileID: -1472727233239557051, guid: 7f2d16ae10bd7364097540f01c2c811e, type: 3}
@@ -142,19 +142,19 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.6666667
+  - time: 0.75
     functionName: UpwardTiltEvent
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 1
+    intParameter: 4
     messageOptions: 0
   - time: 0.8333333
     functionName: UpwardTiltEvent
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 2
+    intParameter: 1
     messageOptions: 0
   - time: 1.4166666
     functionName: UpwardTiltEvent
