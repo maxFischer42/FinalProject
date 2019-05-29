@@ -35,213 +35,140 @@ public class InventoryManager : MonoBehaviour
         index = GetComponent<ItemIndex>();
         AddItem(itemType.Head, 4);
         AddItem(itemType.Head, 5);
+        AddItem(itemType.Tunic, 2);
+        AddItem(itemType.Tunic, 2);
+    }
+
+
+
+    public void changeEquipment(Items i)
+    {
+        Debug.Log("swapping equipment");
+        switch (i.itemType)
+        {
+            case Items.type.Head:
+                headItem = i;
+                break;
+            case Items.type.Cloak:
+                cloakItem = i;
+                break;
+            case Items.type.Tunic:
+                tunicItem = i;
+                break;
+            case Items.type.Accessory:
+                accessoryItem = i;
+                break;
+            case Items.type.Weapon:
+                weaponItem = i;
+                break;
+        }
+    }
+
+    public Items GetEquipment(Items i)
+    {
+
+        return null;
+    }
+
+    Dropdown GetDropdowns(itemType i)
+    {
+        switch(i)
+        {
+            case itemType.Head:
+                return headDropDown;
+            case itemType.Cloak:
+                return cloakDropDown;
+            case itemType.Tunic:
+                return tunicDropDown;
+            case itemType.Accessory:
+                return accessoryDropDown;
+            case itemType.Weapon:
+                return weaponDropDown;
+        }
+        return null;
+    }
+    Items[] GetItems(itemType i)
+    {
+        switch (i)
+        {
+            case itemType.Head:
+                return headItems;
+            case itemType.Cloak:
+                return cloakItems;
+            case itemType.Tunic:
+                return tunicItems;
+            case itemType.Accessory:
+                return accessoryItems;
+            case itemType.Weapon:
+                return weaponItems;
+        }
+        return null;
     }
 
     public void AddItem(itemType type, int indexID)
     {
-        switch(type)
-        {
-            case itemType.Head:
-                AddHead(indexID);
-                break;
-            case itemType.Cloak:
-                AddCloak(indexID);
-                break;
-            case itemType.Tunic:
-                AddTunic(indexID);
-                break;
-            case itemType.Accessory:
-                AddAccessory(indexID);
-                break;
-            case itemType.Weapon:
-                AddWeapon(indexID);
-                break;
-        }
+        Add(indexID, type);
     }
-
-    public void Update()
+    public void setOptions(itemType itemType)
     {
-        
-    }
-
-    public void setHeadOptions()
-    {
-        headDropDown.ClearOptions();
+        Dropdown dropdown = GetDropdowns(itemType);
+        dropdown.ClearOptions();
+        Items[] itemArray = GetItems(itemType);
         List<Dropdown.OptionData> optionDatas = new List<Dropdown.OptionData>();
-        for(int i = 0; i < headItems.Length; i++)
+        for (int i = 0; i < itemArray.Length; i++)
         {
-            Dropdown.OptionData optionData = new Dropdown.OptionData(headItems[i].m_name, headItems[i].icon);
-            optionDatas.Add(optionData);            
-        }
-        headDropDown.AddOptions(optionDatas);
-    }
-
-    public void setCloakOptions()
-    {
-        cloakDropDown.ClearOptions();
-        List<Dropdown.OptionData> optionDatas = new List<Dropdown.OptionData>();
-        for (int i = 0; i < cloakItems.Length; i++)
-        {
-            Dropdown.OptionData optionData = new Dropdown.OptionData(cloakItems[i].m_name, cloakItems[i].icon);
+            Dropdown.OptionData optionData = new Dropdown.OptionData(itemArray[i].m_name, itemArray[i].icon);
             optionDatas.Add(optionData);
+            Debug.Log(i + "th loop");
         }
-        cloakDropDown.AddOptions(optionDatas);
+        dropdown.AddOptions(optionDatas);
     }
-
-    public void setTunicOptions()
-    {
-        tunicDropDown.ClearOptions();
-        List<Dropdown.OptionData> optionDatas = new List<Dropdown.OptionData>();
-        for (int i = 0; i < tunicItems.Length; i++)
-        {
-            Dropdown.OptionData optionData = new Dropdown.OptionData(tunicItems[i].m_name, tunicItems[i].icon);
-            optionDatas.Add(optionData);
-        }
-        tunicDropDown.AddOptions(optionDatas);
-    }
-
-    public void setAccessoryOptions()
-    {
-        accessoryDropDown.ClearOptions();
-        List<Dropdown.OptionData> optionDatas = new List<Dropdown.OptionData>();
-        for (int i = 0; i < accessoryItems.Length; i++)
-        {
-            Dropdown.OptionData optionData = new Dropdown.OptionData(accessoryItems[i].m_name, accessoryItems[i].icon);
-            optionDatas.Add(optionData);
-        }
-        accessoryDropDown.AddOptions(optionDatas);
-    }
-
-    public void setWeaponOptions()
-    {
-        weaponDropDown.ClearOptions();
-        List<Dropdown.OptionData> optionDatas = new List<Dropdown.OptionData>();
-        for (int i = 0; i < weaponItems.Length; i++)
-        {
-            Dropdown.OptionData optionData = new Dropdown.OptionData(weaponItems[i].m_name, weaponItems[i].icon);
-            optionDatas.Add(optionData);
-        }
-        weaponDropDown.AddOptions(optionDatas);
-    }
-
-    public void AddHead(int ID)
+    public void Add(int ID, itemType type)
     {
         Items item;
         index.itemIndex.TryGetValue(ID, out item);
         Debug.Log("Adding item " + item.name + " to inventory");
-        Items[] backup = headItems;
-        headItems = new Items[headItems.Length + 1];
-        if(backup.Length != 0)
-        {
-            Debug.Log("backup length is not 0");
-            for(int i = 0; i < backup.Length; i++)
-            {
-                headItems[i] = backup[i];
-                Debug.Log("Re-adding item " + headItems[i] + " into new array");
-            }
-            headItems[headItems.Length - 1] = item;
-        }
-        else
-        {
-            Debug.Log("backup length is 0");
-            headItems[0] = item;
-        }        
-        setHeadOptions();
-    }
-
-    public void AddCloak(int ID)
-    {
-        Items item;
-        index.itemIndex.TryGetValue(ID, out item);
-        Items[] backup = cloakItems;
-        cloakItems = new Items[cloakItems.Length + 1];
+        Items[] itemArray = GetItems(type);
+        Items[] backup = itemArray;
+        itemArray = new Items[itemArray.Length + 1];
         if (backup.Length != 0)
         {
             Debug.Log("backup length is not 0");
             for (int i = 0; i < backup.Length; i++)
             {
-                cloakItems[i] = backup[i];
-                Debug.Log("Re-adding item " + cloakItems[i] + " into new array");
+                itemArray[i] = backup[i];
+                Debug.Log("Re-adding item " + itemArray[i] + " into new array");
             }
-            cloakItems[cloakItems.Length - 1] = item;
+            itemArray[itemArray.Length - 1] = item;
         }
         else
         {
             Debug.Log("backup length is 0");
-            cloakItems[0] = item;
+            itemArray[0] = item;
         }
-        setCloakOptions();
+        ChangeArray(type, itemArray);
+        setOptions(type);
     }
 
-    public void AddTunic(int ID)
+    void ChangeArray(itemType i, Items[] items)
     {
-        Items item;
-        index.itemIndex.TryGetValue(ID, out item);
-        Items[] backup = tunicItems;
-        tunicItems = new Items[tunicItems.Length + 1];
-        if (backup.Length != 0)
+        switch (i)
         {
-            Debug.Log("backup length is not 0");
-            for (int i = 0; i < backup.Length; i++)
-            {
-                tunicItems[i] = backup[i];
-                Debug.Log("Re-adding item " + tunicItems[i] + " into new array");
-            }
-            tunicItems[tunicItems.Length - 1] = item;
+            case itemType.Head:
+                headItems = items;
+                break;
+            case itemType.Cloak:
+                cloakItems = items;
+                break;
+            case itemType.Tunic:
+                tunicItems = items;
+                break;
+            case itemType.Accessory:
+                accessoryItems = items;
+                break;
+            case itemType.Weapon:
+                weaponItems = items;
+                break;
         }
-        else
-        {
-            Debug.Log("backup length is 0");
-            tunicItems[0] = item;
-        }
-        setTunicOptions();
-    }
-
-    public void AddAccessory(int ID)
-    {
-        Items item;
-        index.itemIndex.TryGetValue(ID, out item);
-        Items[] backup = accessoryItems;
-        accessoryItems = new Items[accessoryItems.Length + 1];
-        if (backup.Length != 0)
-        {
-            Debug.Log("backup length is not 0");
-            for (int i = 0; i < backup.Length; i++)
-            {
-                headItems[i] = backup[i];
-                Debug.Log("Re-adding item " + accessoryItems[i] + " into new array");
-            }
-            accessoryItems[accessoryItems.Length - 1] = item;
-        }
-        else
-        {
-            Debug.Log("backup length is 0");
-            accessoryItems[0] = item;
-        }
-        setAccessoryOptions();
-    }
-
-    public void AddWeapon(int ID)
-    {
-        Items item;
-        index.itemIndex.TryGetValue(ID, out item);
-        Items[] backup = weaponItems;
-        weaponItems = new Items[weaponItems.Length + 1];
-        if (backup.Length != 0)
-        {
-            Debug.Log("backup length is not 0");
-            for (int i = 0; i < backup.Length; i++)
-            {
-                weaponItems[i] = backup[i];
-                Debug.Log("Re-adding item " + weaponItems[i] + " into new array");
-            }
-            weaponItems[weaponItems.Length - 1] = item;
-        }
-        else
-        {
-            Debug.Log("backup length is 0");
-            weaponItems[0] = item;
-        }
-        setWeaponOptions();
     }
 }

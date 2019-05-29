@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PaleTunic
   m_EditorClassIdentifier: 
   m_name: Pale Tunic
-  icon: {fileID: 0}
+  icon: {fileID: 1161201145128540330, guid: 943abbefde328cc4d835467fdd80b3fc, type: 3}
   flair: A tunic with a blue/gray coloring.
-  itemType: 0
-  indexID: 0
+  itemType: 3
+  indexID: 2

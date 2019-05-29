@@ -20,8 +20,9 @@ public class ChangeEquipment : MonoBehaviour
     public void OnValueChanged(Dropdown value)
     {
         image.sprite = value.options[value.value].image;
-        Items equipedItem;
-        index.imageIndex.TryGetValue(value.options[value.value].image, out equipedItem);
+        Items equippedItem;
+        index.imageIndex.TryGetValue(value.options[value.value].image, out equippedItem);
+        manager.changeEquipment(equippedItem);
     }
 
 }

@@ -676,6 +676,7 @@ GameObject:
   - component: {fileID: 103067095}
   - component: {fileID: 103067094}
   - component: {fileID: 103067096}
+  - component: {fileID: 103067097}
   m_Layer: 5
   m_Name: CloakDropdown
   m_TagString: Untagged
@@ -796,6 +797,19 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_AlphaFadeSpeed: 0.15
+--- !u!114 &103067097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103067092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6d749e5df7f98c4c9d01694c7541d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1959174907}
 --- !u!1 &119636115
 GameObject:
   m_ObjectHideFlags: 0
@@ -5113,6 +5127,7 @@ GameObject:
   - component: {fileID: 931145923}
   - component: {fileID: 931145922}
   - component: {fileID: 931145924}
+  - component: {fileID: 931145925}
   m_Layer: 5
   m_Name: AccessoryDropdown
   m_TagString: Untagged
@@ -5233,6 +5248,19 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_AlphaFadeSpeed: 0.15
+--- !u!114 &931145925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931145920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6d749e5df7f98c4c9d01694c7541d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1822356437}
 --- !u!1 &942270194
 GameObject:
   m_ObjectHideFlags: 0
@@ -6889,6 +6917,8 @@ MonoBehaviour:
     icon: {fileID: 1182784195508335311, guid: 8ded76426011ee34ea308598eda2871e, type: 3}
   - item: {fileID: 11400000, guid: ed573493868f82f4c98518cc07854e30, type: 2}
     icon: {fileID: -5926832121448541893, guid: 8ded76426011ee34ea308598eda2871e, type: 3}
+  - item: {fileID: 11400000, guid: d2f9d9462c8c78b41bbdc5dc700de901, type: 2}
+    icon: {fileID: 1161201145128540330, guid: 943abbefde328cc4d835467fdd80b3fc, type: 3}
 --- !u!114 &1273420582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6978,6 +7008,7 @@ GameObject:
   - component: {fileID: 1360588724}
   - component: {fileID: 1360588723}
   - component: {fileID: 1360588721}
+  - component: {fileID: 1360588725}
   m_Layer: 5
   m_Name: WeaponDropdown
   m_TagString: Untagged
@@ -7098,6 +7129,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360588720}
   m_CullTransparentMesh: 0
+--- !u!114 &1360588725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360588720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6d749e5df7f98c4c9d01694c7541d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 124231369}
 --- !u!1 &1393240175
 GameObject:
   m_ObjectHideFlags: 0
@@ -7110,6 +7154,7 @@ GameObject:
   - component: {fileID: 1393240178}
   - component: {fileID: 1393240177}
   - component: {fileID: 1393240179}
+  - component: {fileID: 1393240180}
   m_Layer: 5
   m_Name: TunicDropdown
   m_TagString: Untagged
@@ -7230,6 +7275,19 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_AlphaFadeSpeed: 0.15
+--- !u!114 &1393240180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393240175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6d749e5df7f98c4c9d01694c7541d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 257247466}
 --- !u!1 &1453499274
 GameObject:
   m_ObjectHideFlags: 0
@@ -7490,8 +7548,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d749e5df7f98c4c9d01694c7541d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 1273420582}
-  index: {fileID: 1273420581}
   image: {fileID: 667337234}
 --- !u!1 &1481028394
 GameObject:
