@@ -5,28 +5,17 @@ using UnityEngine;
 public class MoveDropdown : MonoBehaviour
 {
     private Animator animator;
-    public Vector3 closePosition;
-    public Vector3 openPosition;
-    public RuntimeAnimatorController m_animation;
-    private bool state = false;
+    private bool state = true;
 
     void Start()
     {
         animator = GetComponent<Animator>();
     }
 
-    public void StopOpen()
+    public void PlayAnim()
     {
-        //animator.runtimeAnimatorController = null;
-        GetComponent<RectTransform>().anchoredPosition = openPosition;
-        animator.SetBool("Open", false);
-    }
-
-    public void StopClose()
-    {
-        //animator.runtimeAnimatorController = null;
-        GetComponent<RectTransform>().anchoredPosition = closePosition;
-        animator.SetBool("False", false);
+        animator.SetBool("Open", state);
+        state = !state;
     }
 
 }

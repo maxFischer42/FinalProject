@@ -7,12 +7,13 @@ public class PlayerController : MonoBehaviour
 {
     private bool isCooldown = false;
 
+
     private Vector2 uptiltcolloffset;
     private Vector2 uptiltthrustcolloffset;
 
     private GameObject currentHitbox;
 
-    public enum State {Idle, Walk, Run, Roll, Slide, Attack1};
+    public enum State {Idle, Walk, Run, Roll, Slide, Attack1, IdleJump, LongJump, Falling, Landing};
     public State currentState = State.Idle;
 
     [Header("Components")]
@@ -43,6 +44,11 @@ public class PlayerController : MonoBehaviour
     public float rollMultiplier = 1.8f;
     public float slideMultiplier = 2.3f;
 
+    [Header("Other Variables")]
+    public bool isGrounded = false;
+    public Vector2 idleJumpForce = new Vector2(0, 1f);
+    public Vector2 longJumpForce = new Vector2(0, 0.7f);
+
     private void Start()
     {
         rend = GetComponent<SpriteRenderer>();
@@ -52,30 +58,44 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if(isGrounded && currentState == State.Falling)
+        {
+            animator.ChangeAnimation(9);
+        }
+        if (currentState == State.IdleJump || currentState == State.LongJump || currentState == State.Falling)
+            return;
         GetInputs inputs = new GetInputs();
         if (isCooldown)
             return;
-        if (inputs.aInput > 0)
+        if (isGrounded)
         {
-            Debug.Log("foo");
-            currentState = State.Attack1;
-
-            animator.ChangeAnimation(4);
-            return;
-        }
-        if (inputs.hInput != 0)
-        {
-            //check if rolling or sliding
-            if(inputs.yInput != 0)
+            if (inputs.aInput > 0)
             {
-                if (inputs.yInput < 0)
-                {
+                Debug.Log("foo");
+                currentState = State.Attack1;
+
+                animator.ChangeAnimation(4);
+                return;
+            }
+            if (inputs.bInput > 0)
+            {
+                Debug.Log("jump?");
+                Jump(inputs.hInput);
+                return;
+            }
+            if (inputs.hInput != 0)
+            {
+            //check if rolling or sliding
+             if(inputs.yInput != 0)
+             {
+                 if (inputs.yInput < 0)
+                 {
                     Slide(inputs.hInput);
-                }
-                else if(inputs.yInput > 0)
-                {
+                 }
+                 else if(inputs.yInput > 0)
+                 {
                     Roll(inputs.hInput);
-                }
+                 }
             }
             else
             {
@@ -88,6 +108,12 @@ public class PlayerController : MonoBehaviour
             currentState = State.Idle;
             animator.ChangeAnimation(0);
         }
+        }
+    }
+
+    public void GroundCheck(bool var)
+    {
+        isGrounded = var;
     }
 
     public void xMove(float x, float c)
@@ -187,7 +213,7 @@ public class PlayerController : MonoBehaviour
             case 1:
                 Destroy(currentHitbox.gameObject);
                 GetInputs inputs = new GetInputs();
-                if (inputs.aInput > 0)
+                if (inputs.aInput == 0)
                 {
                     isCooldown = false;
                     currentState = State.Idle;
@@ -210,6 +236,41 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Jump(float x)
+    {
+        if(x != 0)
+        {
+            xMove(x, 0);
+            rigidBody.AddForce(new Vector2(x * longJumpForce.x, longJumpForce.y));
+            animator.ChangeAnimation(7);
+            currentState = State.LongJump;
+        }
+    }
+
+    public void LongJumpEvent(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                animator.ChangeAnimation(8);
+                currentState = State.Falling;
+                break;
+        }
+    }
+
+    public void IdleJumpEvent(int i)
+    {
+        switch(i)
+        {
+
+        }
+    }
+
+    public void Land()
+    {
+        animator.ChangeAnimation(0);
+        currentState = State.Idle;
+    }
 }
 
 public class GetInputs
