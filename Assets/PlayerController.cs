@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerAnimationController))]
 public class PlayerController : MonoBehaviour
 {
-    private bool isCooldown = false;
-
+    public bool isCooldown = false;
+    public bool isUnder = false;
 
     private Vector2 uptiltcolloffset;
     private Vector2 uptiltthrustcolloffset;
@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
     public Vector2 idleJumpForce = new Vector2(0, 1f);
     public Vector2 longJumpForce = new Vector2(0, 0.7f);
 
+    private float memoryX;
+
     private void Start()
     {
         rend = GetComponent<SpriteRenderer>();
@@ -58,13 +60,25 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if(isCooldown && currentState == State.Idle)
+        {
+            isCooldown = !isCooldown;
+        }
         if(isGrounded && currentState == State.Falling)
         {
             animator.ChangeAnimation(9);
         }
+        if (animator.animations[0].animation == GetComponent<Animator>().runtimeAnimatorController && currentState != State.Idle)
+        {
+            currentState = State.Idle;
+            mainCollider.enabled = true;
+            slideCollider.enabled = false;
+            rollCollider.enabled = false;
+        }
         if (currentState == State.IdleJump || currentState == State.LongJump || currentState == State.Falling)
             return;
         GetInputs inputs = new GetInputs();
+        
         if (isCooldown)
             return;
         if (isGrounded)
@@ -85,9 +99,10 @@ public class PlayerController : MonoBehaviour
             }
             if (inputs.hInput != 0)
             {
-            //check if rolling or sliding
-             if(inputs.yInput != 0)
-             {
+                memoryX = inputs.hInput;
+                //check if rolling or sliding
+                if (inputs.yInput != 0)
+                {
                  if (inputs.yInput < 0)
                  {
                     Slide(inputs.hInput);
@@ -102,7 +117,7 @@ public class PlayerController : MonoBehaviour
                 xMove(inputs.hInput,inputs.cInput);
             }
         }
-        else if(inputs.hInput == 0)
+        else
         {
             
             currentState = State.Idle;
@@ -167,12 +182,20 @@ public class PlayerController : MonoBehaviour
                 currentState = State.Slide;
                 break;
             case 1:
-                mainCollider.enabled = true;
-                slideCollider.enabled = false;
-                currentState = State.Idle;
-                isCooldown = false;
-                animator.ChangeAnimation(0);
-                rigidBody.velocity = rigidBody.velocity / slideMultiplier * 2;
+                if (isUnder)
+                {
+                    animator.ChangeAnimation(6);
+                    Slide(memoryX);
+                }
+                else
+                {
+                    mainCollider.enabled = true;
+                    slideCollider.enabled = false;
+                    currentState = State.Idle;
+                    isCooldown = false;
+                    animator.ChangeAnimation(0);
+                    rigidBody.velocity = rigidBody.velocity / slideMultiplier * 2;
+                }
                 break;
         }
     }
@@ -271,6 +294,12 @@ public class PlayerController : MonoBehaviour
         animator.ChangeAnimation(0);
         currentState = State.Idle;
     }
+
+    public void HeadCheck(bool x)
+    {
+        isUnder = x;
+    }
+
 }
 
 public class GetInputs
@@ -289,5 +318,4 @@ public class GetInputs
         bInput = Input.GetAxisRaw("Action2");
         cInput = Input.GetAxisRaw("Action3");
     }
-
 }

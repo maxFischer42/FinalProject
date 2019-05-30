@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FeetCollider : MonoBehaviour
+public class HeadTrigger : MonoBehaviour
 {
     private PlayerController controller;
     public LayerMask layerMask;
@@ -16,9 +16,9 @@ public class FeetCollider : MonoBehaviour
     public void Update()
     {
         bool value;
-        if (Physics2D.Raycast(transform.position, Vector2.down, distance, layerMask) ||
-            Physics2D.Raycast(new Vector3(transform.position.x + 0.1f, transform.position.y, 0f), Vector2.down, distance, layerMask) ||
-            Physics2D.Raycast(new Vector3(transform.position.x - 0.1f, transform.position.y, 0f), Vector2.down, distance, layerMask))
+        if (Physics2D.Raycast(transform.position, Vector2.up, distance, layerMask) ||
+            Physics2D.Raycast(new Vector3(transform.position.x + 0.1f, transform.position.y, 0f), Vector2.up, distance, layerMask) ||
+            Physics2D.Raycast(new Vector3(transform.position.x - 0.1f, transform.position.y, 0f), Vector2.up, distance, layerMask))
         {
             value = true;
         }
@@ -26,7 +26,6 @@ public class FeetCollider : MonoBehaviour
         {
             value = false;
         }
-        controller.SendMessage("GroundCheck", value);
+        controller.SendMessage("HeadCheck", value);
     }
-
 }
