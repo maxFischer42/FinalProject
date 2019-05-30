@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded = false;
     public Vector2 idleJumpForce = new Vector2(0, 1f);
     public Vector2 longJumpForce = new Vector2(0, 0.7f);
+    public GameObject jumpEffect;
+    public GameObject longJumpEffect;
 
     private float memoryX;
 
@@ -60,6 +62,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (!isGrounded && rigidBody.velocity.y < 0)
+        {
+            currentState = State.Falling;
+            animator.ChangeAnimation(8);
+        }
         if(isCooldown && currentState == State.Idle)
         {
             isCooldown = !isCooldown;
@@ -261,23 +268,17 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(float x)
     {
+        
         if(x != 0)
         {
+            GameObject effect = (GameObject)Instantiate(longJumpEffect, transform);
+            if (x < 0)
+                effect.GetComponent<SpriteRenderer>().flipX = true;
+            effect.transform.parent = null;
             xMove(x, 0);
             rigidBody.AddForce(new Vector2(x * longJumpForce.x, longJumpForce.y));
             animator.ChangeAnimation(7);
             currentState = State.LongJump;
-        }
-    }
-
-    public void LongJumpEvent(int i)
-    {
-        switch (i)
-        {
-            case 0:
-                animator.ChangeAnimation(8);
-                currentState = State.Falling;
-                break;
         }
     }
 

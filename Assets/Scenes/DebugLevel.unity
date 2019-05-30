@@ -620,14 +620,18 @@ MonoBehaviour:
   upwardTiltThrust: {fileID: 6709959221337012542, guid: 47e4b1638abfd504695ea0d55a1c8531,
     type: 3}
   flip1Offset2: {x: -0.23, y: -0.1066932}
-  speedMultiplier: 3
+  speedMultiplier: 2
   xMaxDistanceDelta: 0.03
-  runMultiplier: 5
+  runMultiplier: 3
   rollMultiplier: 4
   slideMultiplier: 6
   isGrounded: 0
   idleJumpForce: {x: 0, y: 1}
   longJumpForce: {x: 150, y: 275}
+  jumpEffect: {fileID: 7026102057755204484, guid: d342139e30b776e478e46825cb4e0ce4,
+    type: 3}
+  longJumpEffect: {fileID: 7700498361623140954, guid: 8ae09efca66af3240b4caf4d3b48ea84,
+    type: 3}
 --- !u!95 &464356887
 Animator:
   serializedVersion: 3

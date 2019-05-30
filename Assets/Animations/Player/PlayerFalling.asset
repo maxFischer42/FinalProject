@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2bf8255c134fa740b456730c20be8f7, type: 3}
   m_Name: PlayerFalling
   m_EditorClassIdentifier: 
-  animation: {fileID: 9100000, guid: 3f2b2dc90536f8840b4c6b730085767b, type: 2}
+  animation: {fileID: 9100000, guid: 3fae935b3a575c5439d3ae972391e590, type: 2}
   material: {fileID: 2100000, guid: de0d0c4cb3717374d99983ffba808004, type: 2}
