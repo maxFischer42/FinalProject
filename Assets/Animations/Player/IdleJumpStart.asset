@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2bf8255c134fa740b456730c20be8f7, type: 3}
-  m_Name: Walk
+  m_Name: IdleJumpStart
   m_EditorClassIdentifier: 
-  animation: {fileID: 9100000, guid: 4aeb04de1b6ecad48b1602a78b3413f0, type: 2}
-  material: {fileID: 2100000, guid: 6635b1f694f2fdd4b9a52fa942e139e0, type: 2}
+  animation: {fileID: 9100000, guid: 34642553128a06e4ea8c6228347652a2, type: 2}
+  material: {fileID: 2100000, guid: 83b5053be0d4e3747a06e46d111a8cb5, type: 2}

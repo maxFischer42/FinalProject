@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerAnimationController))]
 public class PlayerController : MonoBehaviour
 {
     public bool isCooldown = false;
     public bool isUnder = false;
+
+
 
     private Vector2 uptiltcolloffset;
     private Vector2 uptiltthrustcolloffset;
@@ -36,6 +39,17 @@ public class PlayerController : MonoBehaviour
     public GameObject upwardTiltThrust;
     public Vector2 flip1Offset2 = Vector2.zero;
 
+    [Header("Stamina")]
+    public float currentStamina = 100;
+    public float timeToGetStamina = 0.2f;
+    public float timeToRegainStamina = 2.5f;
+    public float rollStamina = 25;
+    public float runStamina = 2;
+    public float slideStamina = 20;
+    public float jumpStamina = 30;
+    public float staminaGain = 0.1f;
+    public Color staminaGoodColor;
+    public Color staminaBadColor;
 
     [Header("Multiplier Variables")]
     public float speedMultiplier;
@@ -44,12 +58,23 @@ public class PlayerController : MonoBehaviour
     public float rollMultiplier = 1.8f;
     public float slideMultiplier = 2.3f;
 
+    [Header("UI Objects")]
+    public Image StaminaSlider;
+    public GameObject StaminaObject;
+    public float secondTillWheelVanish = 1f;
+
     [Header("Other Variables")]
     public bool isGrounded = false;
     public Vector2 idleJumpForce = new Vector2(0, 1f);
     public Vector2 longJumpForce = new Vector2(0, 0.7f);
     public GameObject jumpEffect;
     public GameObject longJumpEffect;
+
+    bool normalJump = false;
+
+    private bool noStamina = false;
+
+    private float staminaTimer;
 
     private float memoryX;
 
@@ -62,10 +87,19 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        CheckStamina();
+
         if (!isGrounded && rigidBody.velocity.y < 0)
         {
+            if(currentState == State.IdleJump)
+            {
+                animator.ChangeAnimation(11);
+            }
+            else
+            {
+                animator.ChangeAnimation(8);
+            }
             currentState = State.Falling;
-            animator.ChangeAnimation(8);
         }
         if(isCooldown && currentState == State.Idle)
         {
@@ -73,7 +107,14 @@ public class PlayerController : MonoBehaviour
         }
         if(isGrounded && currentState == State.Falling)
         {
-            animator.ChangeAnimation(9);
+            if(!normalJump)
+            {
+                animator.ChangeAnimation(9);
+            }
+            else
+            {
+                animator.ChangeAnimation(11);
+            }
         }
         if (animator.animations[0].animation == GetComponent<Animator>().runtimeAnimatorController && currentState != State.Idle)
         {
@@ -90,7 +131,7 @@ public class PlayerController : MonoBehaviour
             return;
         if (isGrounded)
         {
-            if (inputs.aInput > 0)
+            if (inputs.aInput > 0 && !noStamina)
             {
                 Debug.Log("foo");
                 currentState = State.Attack1;
@@ -98,7 +139,7 @@ public class PlayerController : MonoBehaviour
                 animator.ChangeAnimation(4);
                 return;
             }
-            if (inputs.bInput > 0)
+            if (inputs.bInput > 0 && !noStamina)
             {
                 Debug.Log("jump?");
                 Jump(inputs.hInput);
@@ -110,11 +151,11 @@ public class PlayerController : MonoBehaviour
                 //check if rolling or sliding
                 if (inputs.yInput != 0)
                 {
-                 if (inputs.yInput < 0)
+                 if (inputs.yInput < 0 && !noStamina)
                  {
                     Slide(inputs.hInput);
                  }
-                 else if(inputs.yInput > 0)
+                 else if(inputs.yInput > 0 && !noStamina)
                  {
                     Roll(inputs.hInput);
                  }
@@ -131,6 +172,53 @@ public class PlayerController : MonoBehaviour
             animator.ChangeAnimation(0);
         }
         }
+    }
+
+    public IEnumerator GetStamina()
+    {
+        yield return new WaitForSeconds(timeToGetStamina);
+        currentStamina += staminaGain;
+        if(currentStamina >= 100 && noStamina)
+        {
+            StaminaSlider.color = staminaGoodColor;
+            noStamina = false;
+        }
+    }
+
+    public void UseStamina(float amount)
+    {
+        staminaTimer = 0;
+        currentStamina -= amount;
+    }
+
+    void CheckStamina()
+    {
+        if (currentStamina != 100 && noStamina)
+        {
+            StaminaSlider.color = staminaBadColor;
+        }
+        if(currentStamina < 100)
+        {
+            StaminaObject.SetActive(true);
+        }
+        if (currentStamina > 100)
+            currentStamina = 100;
+        if (currentStamina <= 0)
+        {
+            currentStamina = 0;
+            noStamina = true;
+
+        }
+        if(staminaTimer > timeToRegainStamina && currentStamina != 100)
+        {
+            StartCoroutine(GetStamina());
+        }
+        if(currentStamina != 100)
+        {
+            StaminaObject.SetActive(true);
+        }
+        staminaTimer += Time.deltaTime;
+        StaminaSlider.fillAmount = (currentStamina / 100f);
     }
 
     public void GroundCheck(bool var)
@@ -150,8 +238,9 @@ public class PlayerController : MonoBehaviour
             rend.flipX = true;
         }
         Vector3 velocity = new Vector2(x * speedMultiplier,0);
-        if(c > 0)
+        if(c > 0 && !noStamina)
         {
+            UseStamina(runStamina);
             animator.ChangeAnimation(5);
             d *= runMultiplier;
             currentState = State.Run;
@@ -166,6 +255,7 @@ public class PlayerController : MonoBehaviour
 
     public void Roll(float x)
     {
+        UseStamina(rollStamina);
         Vector2 velocity = new Vector2(x  * rollMultiplier,0f);
         animator.ChangeAnimation(2);
         rigidBody.velocity = velocity;
@@ -173,6 +263,7 @@ public class PlayerController : MonoBehaviour
 
     public void Slide(float x)
     {
+        UseStamina(slideStamina);
         Vector2 velocity = new Vector2(x * slideMultiplier, 0f);
         animator.ChangeAnimation(6);
         rigidBody.velocity = velocity;
@@ -268,9 +359,10 @@ public class PlayerController : MonoBehaviour
 
     public void Jump(float x)
     {
-        
-        if(x != 0)
+        UseStamina(jumpStamina);
+        if (x != 0)
         {
+            normalJump = false;
             GameObject effect = (GameObject)Instantiate(longJumpEffect, transform);
             if (x < 0)
                 effect.GetComponent<SpriteRenderer>().flipX = true;
@@ -280,13 +372,14 @@ public class PlayerController : MonoBehaviour
             animator.ChangeAnimation(7);
             currentState = State.LongJump;
         }
-    }
-
-    public void IdleJumpEvent(int i)
-    {
-        switch(i)
+        else
         {
-
+            normalJump = true;
+            GameObject effect = (GameObject)Instantiate(jumpEffect, transform);
+            effect.transform.parent = null;
+            rigidBody.AddForce(new Vector2(idleJumpForce.x,idleJumpForce.y));
+            animator.ChangeAnimation(10);
+            currentState = State.IdleJump;
         }
     }
 

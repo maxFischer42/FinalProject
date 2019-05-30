@@ -1,25 +1,31 @@
 fileFormatVersion: 2
-guid: 976aab4cd82e75e4f8e017617c9cd44d
+guid: 8e90c3b10bda2e34e961c81508d888f0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3062886482217565450
-    second: AdventurerIdleJump_0
+      213: -194304548608732425
+    second: AdventurerRunning_0
   - first:
-      213: -7371697279878387219
-    second: AdventurerIdleJump_1
+      213: -2320094067742409981
+    second: AdventurerRunning_1
   - first:
-      213: 3434544320128420039
-    second: AdventurerIdleJump_2
+      213: -2148899532457999490
+    second: AdventurerRunning_2
   - first:
-      213: 7075878776372248106
-    second: AdventurerIdleJump_3
+      213: -1190591471131862543
+    second: AdventurerRunning_3
   - first:
-      213: 7274030165013571061
-    second: AdventurerIdleJump_4
+      213: 3016186687296362605
+    second: AdventurerRunning_4
   - first:
-      213: -417876732901821869
-    second: AdventurerIdleJump_5
+      213: 2708944964189350049
+    second: AdventurerRunning_5
+  - first:
+      213: -6531205633192158154
+    second: AdventurerRunning_6
+  - first:
+      213: -1079430804300829917
+    second: AdventurerRunning_7
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -102,7 +108,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AdventurerIdleJump_0
+      name: AdventurerRunning_0
       rect:
         serializedVersion: 2
         x: 0
@@ -116,14 +122,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bc2c357072494b48b5507300780f77a
-      internalID: -3062886482217565450
+      spriteID: 914ad22294598d944a4e229e263ffe72
+      internalID: -194304548608732425
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AdventurerIdleJump_1
+      name: AdventurerRunning_1
       rect:
         serializedVersion: 2
         x: 100
@@ -137,14 +143,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ade10d8eecb9ca41acf4b73441ea15d
-      internalID: -7371697279878387219
+      spriteID: e5699ab07abe6b2488f132d7b19dce2b
+      internalID: -2320094067742409981
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AdventurerIdleJump_2
+      name: AdventurerRunning_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 200
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f07ca46a688e5b47854de3a214aa80f
+      internalID: -2148899532457999490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AdventurerRunning_3
       rect:
         serializedVersion: 2
         x: 0
@@ -158,14 +185,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d21c9b9e3bf473c49b956f13b30a001e
-      internalID: 3434544320128420039
+      spriteID: 258574d157b823d45be2db689510daa6
+      internalID: -1190591471131862543
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AdventurerIdleJump_3
+      name: AdventurerRunning_4
       rect:
         serializedVersion: 2
         x: 100
@@ -179,14 +206,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50cbafa2de84caf4b8eafc67d90e910f
-      internalID: 7075878776372248106
+      spriteID: ce4f85e83e7bad5449262647fd2da630
+      internalID: 3016186687296362605
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AdventurerIdleJump_4
+      name: AdventurerRunning_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 100
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1b058157e3a59e49881c15c9611d7f0
+      internalID: 2708944964189350049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AdventurerRunning_6
       rect:
         serializedVersion: 2
         x: 0
@@ -200,14 +248,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8874839dd9cb5e240ad6705f2eb07896
-      internalID: 7274030165013571061
+      spriteID: 76245bab9110e5d418afa0fafbebb6fe
+      internalID: -6531205633192158154
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AdventurerIdleJump_5
+      name: AdventurerRunning_7
       rect:
         serializedVersion: 2
         x: 100
@@ -221,8 +269,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e237dfa78116db43941ce025dff965f
-      internalID: -417876732901821869
+      spriteID: e12db4f2769943b428ee9150257438a3
+      internalID: -1079430804300829917
       vertices: []
       indices: 
       edges: []
@@ -230,7 +278,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 3706de9428c587542b22e78f3135e512
+    spriteID: 905893832c459d84cb8a51edd8f47553
     internalID: 0
     vertices: []
     indices: 

@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: cb945976911801a489da0fbbb849a031
+guid: c3a47f7017bb609478d2c4098ebcbe81
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4257835995132220343
-    second: Adventurer walking_0
+      213: 8339994348691261101
+    second: AdventurerWalking_0
   - first:
-      213: -5677041890748498226
-    second: Adventurer walking_1
+      213: 6928710353766131904
+    second: AdventurerWalking_1
   - first:
-      213: -3995783514526963509
-    second: Adventurer walking_2
+      213: 394648454409792096
+    second: AdventurerWalking_2
   - first:
-      213: -4642782079280287932
-    second: Adventurer walking_3
+      213: 8874241214384057504
+    second: AdventurerWalking_3
   - first:
-      213: -8030002173745568040
-    second: Adventurer walking_4
+      213: 6469543274429049729
+    second: AdventurerWalking_4
   - first:
-      213: -1116986287728305397
-    second: Adventurer walking_5
+      213: 5833739375814122189
+    second: AdventurerWalking_5
   - first:
-      213: 9020391252932458537
-    second: Adventurer walking_6
+      213: -4184736057670264583
+    second: AdventurerWalking_6
   - first:
-      213: 8078203542641699759
-    second: Adventurer walking_7
+      213: 8521195138378192180
+    second: AdventurerWalking_7
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -104,22 +104,11 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Adventurer walking_0
+      name: AdventurerWalking_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,14 +122,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6bda26501b486cf42b0e2b165ad96e76
-      internalID: 4257835995132220343
+      spriteID: ad0e51527e2c3ec469a6e45660f259fa
+      internalID: 8339994348691261101
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Adventurer walking_1
+      name: AdventurerWalking_1
       rect:
         serializedVersion: 2
         x: 100
@@ -154,14 +143,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 315eaf96899832c48ba9671e3a1bf8ab
-      internalID: -5677041890748498226
+      spriteID: f5d91ca435cd19f47a548e532746944a
+      internalID: 6928710353766131904
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Adventurer walking_2
+      name: AdventurerWalking_2
       rect:
         serializedVersion: 2
         x: 200
@@ -175,14 +164,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b8ee5b5e03e20c40bdefca4ec9ff208
-      internalID: -3995783514526963509
+      spriteID: 787df47915988434ab6a4e325c99659a
+      internalID: 394648454409792096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Adventurer walking_3
+      name: AdventurerWalking_3
       rect:
         serializedVersion: 2
         x: 0
@@ -196,14 +185,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2fb2fbd8352b8042810c455d3603998
-      internalID: -4642782079280287932
+      spriteID: b9d72983164a42947ad5f43ba608bc33
+      internalID: 8874241214384057504
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Adventurer walking_4
+      name: AdventurerWalking_4
       rect:
         serializedVersion: 2
         x: 100
@@ -217,14 +206,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37332b4e14ff96d4e84d9b46b3880aad
-      internalID: -8030002173745568040
+      spriteID: 4ebce7532a8a92743aa04d2511a4d237
+      internalID: 6469543274429049729
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Adventurer walking_5
+      name: AdventurerWalking_5
       rect:
         serializedVersion: 2
         x: 200
@@ -238,14 +227,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28525c04671c8364499bdb9ec9d3ae69
-      internalID: -1116986287728305397
+      spriteID: fa0c862fd7ab1c74d81a2769fdb62a17
+      internalID: 5833739375814122189
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Adventurer walking_6
+      name: AdventurerWalking_6
       rect:
         serializedVersion: 2
         x: 0
@@ -259,14 +248,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab4edd6053ef16d40be94635eb162fea
-      internalID: 9020391252932458537
+      spriteID: 672b6ba13c17e734eb651142cf1b64a3
+      internalID: -4184736057670264583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Adventurer walking_7
+      name: AdventurerWalking_7
       rect:
         serializedVersion: 2
         x: 100
@@ -280,8 +269,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f2ed72481f3d8246a77a99779c6bf73
-      internalID: 8078203542641699759
+      spriteID: 1842a9c04d7a0374488202e3b2a9f1fc
+      internalID: 8521195138378192180
       vertices: []
       indices: 
       edges: []
@@ -289,7 +278,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 51f4ff3f67ce7c54aaf333190ad0302d
+    spriteID: 69dc51f6748ef7d4b9af888ca0c44f13
     internalID: 0
     vertices: []
     indices: 
