@@ -4989,7 +4989,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedMultiplier: 1
-  maxDistanceDelta: 0.1
+  maxDistanceDelta: 0.01
+  staminaUsage: 0.1
 --- !u!1 &470699496
 GameObject:
   m_ObjectHideFlags: 0
