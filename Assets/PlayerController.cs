@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private GameObject currentHitbox;
 
-    public enum State {Idle, Walk, Run, Roll, Slide, Attack1, IdleJump, LongJump, Falling, Landing};
+    public enum State {Idle, Walk, Run, Roll, Slide, Attack1, IdleJump, LongJump, Falling, Landing, Climbing};
     public State currentState = State.Idle;
 
     [Header("Components")]
@@ -69,10 +69,13 @@ public class PlayerController : MonoBehaviour
     public Vector2 longJumpForce = new Vector2(0, 0.7f);
     public GameObject jumpEffect;
     public GameObject longJumpEffect;
+    public float gravityScale = 1f;
 
     bool normalJump = false;
 
     private bool noStamina = false;
+
+    private Climb climbScript;
 
     private float staminaTimer;
 
@@ -83,12 +86,14 @@ public class PlayerController : MonoBehaviour
         rend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         animator = GetComponent<PlayerAnimationController>();
+        climbScript = GetComponent<Climb>();
     }
 
     void Update()
     {
         CheckStamina();
-
+        if (currentState == State.Climbing)
+            return;
         if (!isGrounded && rigidBody.velocity.y < 0)
         {
             if(currentState == State.IdleJump)
@@ -196,6 +201,13 @@ public class PlayerController : MonoBehaviour
         if (currentStamina != 100 && noStamina)
         {
             StaminaSlider.color = staminaBadColor;
+            if (currentState == State.Climbing)
+            {
+                currentState = State.Falling;
+                climbScript.enabled = false;
+                anim.enabled = true;
+                rigidBody.gravityScale = gravityScale;
+            }
         }
         if(currentStamina < 100)
         {
@@ -392,6 +404,26 @@ public class PlayerController : MonoBehaviour
     public void HeadCheck(bool x)
     {
         isUnder = x;
+    }
+
+    public void WallCheck(bool x)
+    {
+        if (currentState == State.Falling)
+            return;
+        if (x)
+        {
+            currentState = State.Climbing;
+            climbScript.enabled = true;
+            rigidBody.velocity = Vector2.zero;
+            rigidBody.gravityScale = 0f;
+        }
+        else if (!x)
+        {
+            currentState = State.Falling;
+            climbScript.enabled = false;
+            anim.enabled = true;
+            rigidBody.gravityScale = gravityScale;
+        }
     }
 
 }
