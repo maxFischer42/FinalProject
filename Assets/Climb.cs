@@ -29,6 +29,11 @@ public class Climb : MonoBehaviour
             {
                 anim.enabled = false;
             }
+            float a = 1;
+            if (!GetComponent<SpriteRenderer>().flipX)
+                a = -1;
+            if (input.bInput > 0)
+                GetComponent<PlayerController>().Jump(a);
     }
 
     void Move(float x)

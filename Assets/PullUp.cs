@@ -8,12 +8,13 @@ public class PullUp : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerController data = collision.GetComponent<PlayerController>();
-        if(data)
+        if(collision.gameObject.name == "WallDetector")
         {
+            Debug.Log("Pull up");
+            PlayerController data = collision.transform.parent.GetComponent<PlayerController>();
             data.pullUpDisplacement = directionDisplace;
             data.currentState = PlayerController.State.Pullup;
-            //set pulling up animation once have it//
+            data.PullUp();
         }
     }
 }

@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2bf8255c134fa740b456730c20be8f7, type: 3}
+  m_Name: PullUp
+  m_EditorClassIdentifier: 
+  animation: {fileID: 9100000, guid: fe44a53da19c3a44da3e170561673740, type: 2}
+  material: {fileID: 2100000, guid: f820282f67e9967488648717516f7fcf, type: 2}

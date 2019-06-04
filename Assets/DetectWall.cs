@@ -9,7 +9,6 @@ public class DetectWall : MonoBehaviour
         if (collision.gameObject.tag == "Wall")
         {
             transform.parent.SendMessage("WallCheck", true);
-            transform.parent.GetComponent<PlayerAnimationController>().ChangeAnimation(13);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
