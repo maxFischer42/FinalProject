@@ -8,6 +8,7 @@ public class PlayerAnimationController : MonoBehaviour
     public AnimationObject[] animations = new AnimationObject[5];
     private Animator animator;
     private SpriteRenderer renderer;
+    public Sprite climbStart;
 
     private void Start()
     {
@@ -22,5 +23,7 @@ public class PlayerAnimationController : MonoBehaviour
         Material mat = input.material;
         animator.runtimeAnimatorController = anim;
         renderer.material = mat;
+        if (id == 13)
+            renderer.sprite = climbStart;
     }
 }

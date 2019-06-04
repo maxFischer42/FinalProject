@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private GameObject currentHitbox;
 
-    public enum State {Idle, Walk, Run, Roll, Slide, Attack1, IdleJump, LongJump, Falling, Landing, Climbing};
+    public enum State {Idle, Walk, Run, Roll, Slide, Attack1, IdleJump, LongJump, Falling, Landing, Climbing, Pullup};
     public State currentState = State.Idle;
 
     [Header("Components")]
@@ -71,6 +71,9 @@ public class PlayerController : MonoBehaviour
     public GameObject longJumpEffect;
     public float gravityScale = 1f;
 
+    [HideInInspector]
+    public Vector2 pullUpDisplacement;
+
     bool normalJump = false;
 
     private bool noStamina = false;
@@ -93,7 +96,10 @@ public class PlayerController : MonoBehaviour
     {
         CheckStamina();
         if (currentState == State.Climbing)
+        {
+            animator.ChangeAnimation(13);
             return;
+        }
         if (!isGrounded && rigidBody.velocity.y < 0)
         {
             if(currentState == State.IdleJump)
@@ -412,6 +418,7 @@ public class PlayerController : MonoBehaviour
             return;
         if (x)
         {
+            
             currentState = State.Climbing;
             climbScript.enabled = true;
             rigidBody.velocity = Vector2.zero;

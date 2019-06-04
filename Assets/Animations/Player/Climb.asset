@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2bf8255c134fa740b456730c20be8f7, type: 3}
+  m_Name: Climb
+  m_EditorClassIdentifier: 
+  animation: {fileID: 9100000, guid: cf4b2878295e3a44db0638d57c066f39, type: 2}
+  material: {fileID: 2100000, guid: a5c2b6e87202f7b419d31c9ad857bf5e, type: 2}

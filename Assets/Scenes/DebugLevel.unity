@@ -4839,6 +4839,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 46b6576c4976b214d93c7b124c08b8df, type: 2}
   - {fileID: 11400000, guid: 0ab7a01fcce35ae4587fecee795fb036, type: 2}
   - {fileID: 11400000, guid: 738ef002c766a5e439903e0c7cb386c0, type: 2}
+  - {fileID: 11400000, guid: febf1dfc7d76f4e43be8b66358d2d036, type: 2}
+  climbStart: {fileID: 9191307406502071960, guid: be38e124664888245942e3393cae0009,
+    type: 3}
 --- !u!114 &464356886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4867,10 +4870,10 @@ MonoBehaviour:
   currentStamina: 100
   timeToGetStamina: 1
   timeToRegainStamina: 1
-  rollStamina: 35
+  rollStamina: 2
   runStamina: 0.25
-  slideStamina: 35
-  jumpStamina: 40
+  slideStamina: 2.5
+  jumpStamina: 5
   staminaGain: 1
   staminaGoodColor: {r: 0.09571421, g: 1, b: 0, a: 1}
   staminaBadColor: {r: 1, g: 0.23993567, b: 0, a: 1}
@@ -4890,6 +4893,7 @@ MonoBehaviour:
   longJumpEffect: {fileID: 7700498361623140954, guid: 8ae09efca66af3240b4caf4d3b48ea84,
     type: 3}
   gravityScale: 1
+  pullUpDisplacement: {x: 0, y: 0}
 --- !u!95 &464356887
 Animator:
   serializedVersion: 3
