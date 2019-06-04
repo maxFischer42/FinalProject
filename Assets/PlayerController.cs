@@ -73,6 +73,7 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector]
     public Vector2 pullUpDisplacement;
+    private Vector2 halfUpOffset;
 
     bool normalJump = false;
 
@@ -100,6 +101,8 @@ public class PlayerController : MonoBehaviour
             animator.ChangeAnimation(13);
             return;
         }
+        if (currentState == State.Pullup)
+            return;
         if (!isGrounded && rigidBody.velocity.y < 0)
         {
             if(currentState == State.IdleJump)
@@ -227,7 +230,7 @@ public class PlayerController : MonoBehaviour
             noStamina = true;
 
         }
-        if(staminaTimer > timeToRegainStamina && currentStamina != 100)
+        if(staminaTimer > timeToRegainStamina && currentStamina != 100 && currentState != State.Climbing && currentState != State.Falling)
         {
             StartCoroutine(GetStamina());
         }
@@ -430,6 +433,30 @@ public class PlayerController : MonoBehaviour
             climbScript.enabled = false;
             anim.enabled = true;
             rigidBody.gravityScale = gravityScale;
+        }
+    }
+
+    public void PullUp()
+    {
+        animator.ChangeAnimation(14);
+        currentState = State.Pullup;
+        halfUpOffset = transform.position + new Vector3(pullUpDisplacement.x / 2, pullUpDisplacement.y / 2, 0f);
+    }
+
+    public void PullUpEvent(int x)
+    {
+        switch(x)
+        {
+            case 0:
+                transform.position = halfUpOffset;
+                break;
+            case 1:
+                transform.position = pullUpDisplacement;
+                break;
+            case 2:
+                currentState = State.Idle;
+                break;
+
         }
     }
 
