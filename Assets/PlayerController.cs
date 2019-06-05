@@ -95,6 +95,13 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         CheckStamina();
+        if (slideCollider.enabled && currentState != State.Slide)
+        {
+            slideCollider.enabled = false;
+            mainCollider.enabled = true;
+        }
+        if((currentState == State.Falling && rigidBody.velocity.magnitude < 1) || (currentState == State.LongJump && isGrounded && rigidBody.velocity.magnitude < 1))
+            currentState = State.Idle;
         if (currentState == State.Climbing)
         {
             animator.ChangeAnimation(13);

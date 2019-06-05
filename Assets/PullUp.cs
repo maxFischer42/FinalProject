@@ -12,9 +12,15 @@ public class PullUp : MonoBehaviour
         {
             Debug.Log("Pull up");
             PlayerController data = collision.transform.parent.GetComponent<PlayerController>();
-            data.pullUpDisplacement = directionDisplace;
-            data.currentState = PlayerController.State.Pullup;
-            data.PullUp();
+            if ((data.currentState != PlayerController.State.Slide ||
+                data.currentState != PlayerController.State.Roll ||
+                data.currentState != PlayerController.State.Attack1) && !data.slideCollider.enabled)
+            {
+                data.rigidBody.velocity = Vector2.zero;
+                data.pullUpDisplacement = directionDisplace;
+                data.currentState = PlayerController.State.Pullup;
+                data.PullUp();
+            }
         }
     }
 }
